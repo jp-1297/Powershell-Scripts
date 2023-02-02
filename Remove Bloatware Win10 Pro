@@ -1,0 +1,24 @@
+# List of apps to remove
+$AppsToRemove = @(
+    "3DBuilder",
+    "Microsoft.MicrosoftSolitaireCollection",
+    "Microsoft.WindowsCalculator",
+    "Microsoft.WindowsCamera",
+    "Microsoft.WindowsFeedbackHub",
+    "Microsoft.WindowsMaps",
+    "Microsoft.WindowsPhone",
+    "Microsoft.WindowsStore",
+    "Microsoft.XboxApp",
+    "Microsoft.XboxGameCallableUI",
+    "Microsoft.XboxIdentityProvider",
+    "Microsoft.XboxSpeechToTextOverlay",
+    "Microsoft.ZuneMusic",
+    "Microsoft.ZuneVideo"
+)
+
+# Loop through the list of apps
+foreach ($App in $AppsToRemove) {
+    # Uninstall the app
+    Write-Output "Removing $App"
+    Get-AppxPackage $App | Remove-AppxPackage
+}
