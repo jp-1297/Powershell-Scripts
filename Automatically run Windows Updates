@@ -1,0 +1,12 @@
+# Get the list of available updates
+$Updates = Get-WindowsUpdate
+
+# Check if there are any updates available
+if ($Updates) {
+    Write-Output "Updates are available"
+
+    # Install the updates
+    Install-WindowsUpdate -Updates $Updates -AcceptAll -AutoReboot
+} else {
+    Write-Output "No updates are available"
+}
