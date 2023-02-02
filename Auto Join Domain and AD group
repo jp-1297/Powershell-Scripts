@@ -1,0 +1,27 @@
+# Get the serial number of the PC
+$SerialNumber = (Get-WmiObject -Class Win32_ComputerSystemProduct).IdentifyingNumber
+
+# Set the new computer name to the serial number
+$ComputerName =  $SerialNumber
+Rename-Computer -NewName $ComputerName -Restart
+
+# Set the domain name and the domain administrator credentials
+$Domain = "Example.local"
+$Username = "administrator"
+$Password = ConvertTo-SecureString "password" -AsPlainText -Force
+$Credentials = New-Object System.Management.Automation.PSCredential ($Username, $Password)
+
+# Join the PC to the domain
+Add-Computer -DomainName $Domain -Credential $Credentials -Restart
+
+# Wait for the computer to restart
+Start-Sleep -Seconds 60
+
+# Import the ActiveDirectory module
+Import-Module ActiveDirectory
+
+# Get the Distinguished Name (DN) of the computer group in AD
+$GroupDN = (Get-ADGroup -Filter "Name -eq 'Computers'").DistinguishedName
+
+# Add the computer to the computer group in AD
+Add-ADPrincipalGroupMembership -Identity $ComputerName -MemberOf $GroupDN
