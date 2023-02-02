@@ -1,0 +1,17 @@
+# Get the current IP address
+$CurrentIP = (Invoke-WebRequest -Uri "http://checkip.dyndns.org" -UseBasicParsing).Content -replace "\<.*?\>",""
+
+# Check if the current IP address is not part of the 172.17.* range
+if ($CurrentIP -notlike "172.17.*") {
+    Write-Output "Current IP is not part of the 172.17.* range: $CurrentIP"
+
+    # Release the current IP address
+    Write-Output "Releasing IP address"
+    ipconfig /release
+
+    # Renew the IP address
+    Write-Output "Renewing IP address"
+    ipconfig /renew
+} else {
+    Write-Output "Current IP is part of the 172.17.* range: $CurrentIP"
+}
