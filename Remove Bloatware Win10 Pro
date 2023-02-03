@@ -1,4 +1,5 @@
 # List of apps to remove
+
 $AppsToRemove = @(
     "3DBuilder",
     "Microsoft.MicrosoftSolitaireCollection",
@@ -14,9 +15,16 @@ $AppsToRemove = @(
     "Microsoft.XboxSpeechToTextOverlay",
     "Microsoft.ZuneMusic",
     "Microsoft.ZuneVideo"
+    "Microsoft.Cortana"
+    "Microsoft.GrooveMUsic"
+    "Microsoft.maps"
+    "Microsoft.MixedReality"
+    "Microsoft.Paint3d"
+    "Microsoft.Phone"
 )
 
-# Loop through the list of apps
+# Run through the list of apps
+
 foreach ($App in $AppsToRemove) {
     # Uninstall the app
     Write-Output "Removing $App"
