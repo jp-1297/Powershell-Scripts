@@ -3,7 +3,6 @@
 $AppsToRemove = @(
     "3DBuilder",
     "Microsoft.MicrosoftSolitaireCollection",
-    "Microsoft.WindowsCalculator",
     "Microsoft.WindowsCamera",
     "Microsoft.WindowsFeedbackHub",
     "Microsoft.WindowsMaps",
